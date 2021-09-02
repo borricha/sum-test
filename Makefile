@@ -1,8 +1,14 @@
-// main.cpp
-#include <stdio.h>
-#include "sum.h"
+#Makefile
+all: sum-test
 
-int main() {
-  int s = sum(10);
-  printf("result=%d\n", s);
-}
+sum-test: sum.o main.o
+	g++ -o sum-test sum.o main.o
+
+main.o: sum.h main.cpp
+
+sum.o: sum.h sum.cpp
+
+clean:
+	rm -f sum-test
+	rm -f *.o
+
